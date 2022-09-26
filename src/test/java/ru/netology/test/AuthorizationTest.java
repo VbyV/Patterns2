@@ -8,10 +8,9 @@ import ru.netology.data.DataGenerator;
 
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
-public class authorizationTest {
+public class AuthorizationTest {
     @BeforeEach
     void setUp() {
         open("http://localhost:9999");
@@ -23,7 +22,7 @@ public class authorizationTest {
         $("[name='login']").setValue(user.getLogin());
         $("[name='password']").setValue(user.getPassword());
         $("[data-test-id='action-login']").click();
-        $("body div#root h2").shouldHave(text(" Личный кабинет"));
+        $x("//*[@id='root']").shouldHave(text(" Личный кабинет"));
     }
 
     @Test
